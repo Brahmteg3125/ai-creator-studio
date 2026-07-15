@@ -1,0 +1,6 @@
+# AI Creator Studio — Python dependencies
+# Rule: every time we install a library, we add it here with its version.
+# Rebuild the whole environment anytime with:
+#     pip install -r requirements.txt
+#
+# (Empty for now — we add real libraries starting in Milestone 3: SDXL.)
