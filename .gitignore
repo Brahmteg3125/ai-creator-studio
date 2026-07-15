@@ -1,0 +1,19 @@
+# ── Python virtual environment ──
+# Huge, and fully rebuildable from requirements.txt. Never commit it.
+.venv/
+
+# ── Python bytecode cache ──
+# Auto-generated when Python runs. Not our source code.
+__pycache__/
+*.pyc
+
+# ── Generated media (our pipeline creates these at runtime) ──
+outputs/
+
+# ── Large AI model weights (downloaded, not written by us) ──
+models/
+*.safetensors
+*.ckpt
+
+# ── Secrets (API keys, passwords) — NEVER commit these ──
+.env
