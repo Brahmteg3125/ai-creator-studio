@@ -8,6 +8,7 @@ class Persona:
     age: int
     personality: str
     appearance: str
+    voice_style: str = "friendly"
 
     def introduce(self) -> str:
         return f"Hi, I'm {self.name}, a {self.age}-year-old {self.personality} creator."
