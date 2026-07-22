@@ -3,14 +3,7 @@ import torch
 from diffusers import StableDiffusionXLPipeline
 
 from src.persona.persona import Persona
-
-
-def build_prompt(persona: Persona) -> str:
-    """Turn a persona's visual description into an SDXL prompt."""
-    return (
-        f"portrait photo of a {persona.age}-year-old {persona.personality} person, "
-        f"{persona.appearance}, natural soft lighting, photorealistic, high detail"
-    )
+from src.image.prompts import build_prompt, build_negative_prompt
 
 
 class ImageGenerator:
@@ -26,9 +19,12 @@ class ImageGenerator:
         ).to("cuda")
 
     def generate(self, persona: Persona, seed: int = 42, steps: int = 30) -> str:
-        prompt = build_prompt(persona)
-        generator = torch.Generator(device="cuda").manual_seed(seed)
-        image = self.pipe(prompt, num_inference_steps=steps, generator=generator).images[0]
+        image = self.pipe(
+            prompt=build_prompt(persona),
+            negative_prompt=build_negative_prompt(),
+            num_inference_steps=steps,
+            generator=torch.Generator(device="cuda").manual_seed(seed),
+        ).images[0]
 
         os.makedirs("outputs", exist_ok=True)
         path = f"outputs/{persona.name.lower()}_seed{seed}.png"
