@@ -18,9 +18,9 @@ class ImageGenerator:
             use_safetensors=True,
         ).to("cuda")
 
-    def generate(self, persona: Persona, seed: int = 42, steps: int = 30) -> str:
+    def generate(self, persona: Persona, scene: str = "", seed: int = 42, steps: int = 30) -> str:
         image = self.pipe(
-            prompt=build_prompt(persona),
+            prompt=build_prompt(persona, scene),
             negative_prompt=build_negative_prompt(),
             num_inference_steps=steps,
             generator=torch.Generator(device="cuda").manual_seed(seed),

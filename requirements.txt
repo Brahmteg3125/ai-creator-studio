@@ -11,3 +11,7 @@ transformers==5.13.1
 accelerate==1.14.0
 # torch: provided by the runtime (Colab preinstalls a CUDA build).
 # Elsewhere, install the build matching your system: https://pytorch.org
+
+# LLM script generation (Milestone 6)
+groq==1.0.0
+python-dotenv==1.2.1
